@@ -1,0 +1,35 @@
+- hosts: localhost
+  tasks:
+    - name: Установка пакетов на ВМ1
+      apt:
+        name:
+          - nginx
+          - apache2-utils
+          - prometheus
+      become: yes
+      tags: 
+        - vm1
+
+- hosts: server2
+  tasks:
+    - name: Установка пакетов на ВМ2
+      apt:
+        name:
+          - nginx
+          - apache2-utils
+          - prometheus
+      become: yes
+      tags: 
+        - vm2
+
+- hosts: servers
+  tasks:
+    - name: Установка пакетов на группу хостов
+      apt:
+        name:
+          - nginx
+          - apache2-utils
+          - prometheus
+      become: yes
+      tags: 
+        - vms
